@@ -9,7 +9,7 @@ export const NavBar = () => {
         <NavLink to="/dashboard/main">Home</NavLink>
         <NavLink to="/dashboard/newParking">New Parking</NavLink>
         <NavLink to="/dashboard/history">Parking History</NavLink>
-        <NavLink to="/dashboard/availability">Parking Availability</NavLink>
+        <NavLink to="/dashboard/locations">Parking Locations</NavLink>
       </nav>
       <div style={{ border: "1px solid yellow" }}>
         <Outlet />

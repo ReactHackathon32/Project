@@ -6,7 +6,7 @@ import PageRegister from "./Pages/PageRegister";
 import { NavBar } from "./Layouts/NavBar"
 import { NewParking } from "./Components/Dashboard/NewParking";
 import { ParkingHistory } from "./Components/Dashboard/ParkingHistory";
-import { ParkingAvail } from "./Components/Dashboard/ParkingAvail";
+import { ViewLocations } from "./Components/Dashboard/ViewLocations";
 import { MainDashboard } from "./Components/Dashboard/MainDashboard";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -21,7 +21,7 @@ function App() {
           <Route path="/dashboard/main" element={<MainDashboard />} />
           <Route path="/dashboard/newParking" element={<NewParking />} />
           <Route path="/dashboard/history" element={<ParkingHistory />} />
-          <Route path="/dashboard/availability" element={<ParkingAvail />} />
+          <Route path="/dashboard/locations" element={<ViewLocations />} />
         </Route>
       </Routes>
     </div>
