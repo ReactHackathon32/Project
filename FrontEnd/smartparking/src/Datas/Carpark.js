@@ -1,4 +1,7 @@
-export const dummyCarpark = [
+import React, { Dashboard } from "react";
+import NewParking from "../Components/Dashboard/NewParking";
+
+const dummyCarpark = [
   {
     carparkId: "1",
     carparkName: "AE15",
@@ -32,3 +35,15 @@ export const dummyCarpark = [
     availableLots: "28",
   },
 ];
+
+class Carpark extends Dashboard {
+  render() {
+    return (
+      <div>
+        <NewParking dummyCarpark={dummyCarpark} />
+      </div>
+    );
+  }
+}
+
+export default Carpark;

@@ -1,9 +1,17 @@
 import React from "react";
+import Carpark from "../../Datas/Carpark";
 
-export const NewParking = ({ newLocation }) => {
-  return (
-    <div>
-      this is NewParking
-    </div>
-  );
-};
+export class NewParking extends Carpark {
+  render() {
+    return (
+      <div>
+        <Carpark />
+        {this.props.dummyCarpark.map((carparkId) => (
+          <div className="dummyCarpark">{carparkId}</div>
+        ))}
+      </div>
+    );
+  }
+}
+
+export default NewParking;
