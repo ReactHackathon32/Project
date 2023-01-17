@@ -3,6 +3,10 @@ import { Route, Routes } from "react-router-dom";
 import PageLogin from "./Pages/PageLogin";
 import PageRegister from "./Pages/PageRegister";
 import PageDashboard from "./Pages/PageDashboard";
+import { NewParking } from "./Components/Dashboard/NewParking";
+import { ParkingHistory } from "./Components/Dashboard/ParkingHistory";
+import { ParkingAvail } from "./Components/Dashboard/ParkingAvail";
+import { NavBar } from "./Layouts/NavBar";
 
 function App() {
   return (
@@ -11,7 +15,12 @@ function App() {
         <Route path="/" element={<PageLanding />} />
         <Route path="/login" element={<PageLogin />} />
         <Route path="/register" element={<PageRegister />} />
-        <Route path="/dashboard" element={<PageDashboard />} />
+        <NavBar>
+          <Route path="/dashboard" element={<PageDashboard />} />
+          <Route path="/dashboard/newParking" element={<NewParking />} />
+          <Route path="/dashboard/history" element={<ParkingHistory />} />
+          <Route path="/dashboard/availability" element={<ParkingAvail />} />
+        </NavBar>
       </Routes>
     </div>
   );
