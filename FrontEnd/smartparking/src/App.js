@@ -1,11 +1,13 @@
-import PageLanding from "./Pages/PageLanding";
+import React from "react";
 import { Route, Routes } from "react-router-dom";
+import PageLanding from "./Pages/PageLanding";
 import PageLogin from "./Pages/PageLogin";
 import PageRegister from "./Pages/PageRegister";
-import PageDashboard from "./Pages/PageDashboard";
+import { NavBar } from "./Layouts/NavBar"
 import { NewParking } from "./Components/Dashboard/NewParking";
 import { ParkingHistory } from "./Components/Dashboard/ParkingHistory";
 import { ParkingAvail } from "./Components/Dashboard/ParkingAvail";
+import { MainDashboard } from "./Components/Dashboard/MainDashboard";
 
 function App() {
   return (
@@ -14,10 +16,12 @@ function App() {
         <Route path="/" element={<PageLanding />} />
         <Route path="/login" element={<PageLogin />} />
         <Route path="/register" element={<PageRegister />} />
-        <Route path="/dashboard" element={<PageDashboard />} />
-        <Route path="/dashboard/newParking" element={<NewParking />} />
-        <Route path="/dashboard/history" element={<ParkingHistory />} />
-        <Route path="/dashboard/availability" element={<ParkingAvail />} />
+        <Route path="/dashboard" element={<NavBar />}>
+          <Route path="/dashboard/main" element={<MainDashboard />} />
+          <Route path="/dashboard/newParking" element={<NewParking />} />
+          <Route path="/dashboard/history" element={<ParkingHistory />} />
+          <Route path="/dashboard/availability" element={<ParkingAvail />} />
+        </Route>
       </Routes>
     </div>
   );

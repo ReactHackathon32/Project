@@ -1,15 +1,19 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 
-export const NavBar = (props) => {
+export const NavBar = ({ children }) => {
   return (
-    <div>
-      this is NavBar
-      <Link to="/dashboard">Homepage</Link>
-      <Link to="/dashboard/newParking">New Parking</Link>
-      <Link to="/dashboard/history">Parking History</Link>
-      <Link to="/dashboard/availability">Parking Availability</Link>
-      {props.children}
+    <div style={{ border: "1px solid black" }}>
+      This is NavBar
+      <nav>
+        <NavLink to="/dashboard/main">Home</NavLink>
+        <NavLink to="/dashboard/newParking">New Parking</NavLink>
+        <NavLink to="/dashboard/history">Parking History</NavLink>
+        <NavLink to="/dashboard/availability">Parking Availability</NavLink>
+      </nav>
+      <div style={{ border: "1px solid yellow" }}>
+        <Outlet />
+      </div>
     </div>
   );
 };
