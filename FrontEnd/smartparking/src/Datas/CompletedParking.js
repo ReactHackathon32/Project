@@ -1,4 +1,4 @@
-const dummyOngoingParking = {
+export const dummyOngoingParking = {
   parkingId: "389d68ef-b74c-45c5-ac0e-2ed1bcd13485",
   user: {
     userId: "47e901ff-6f6a-41da-974e-2ffca67f1917",
