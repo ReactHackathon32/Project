@@ -1,5 +1,10 @@
 import React from "react";
+import { NavBar } from "../../Layouts/NavBar";
 
 export const ParkingHistory = () => {
-  return <div>this is ParkingHistory</div>;
+  return (
+    <div>
+      <NavBar>this is ParkingHistory</NavBar>
+    </div>
+  );
 };

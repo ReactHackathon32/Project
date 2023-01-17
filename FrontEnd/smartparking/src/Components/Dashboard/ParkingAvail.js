@@ -1,6 +1,11 @@
 import React from "react";
+import { NavBar } from "../../Layouts/NavBar";
 
 export const ParkingAvail = () => {
-  return <div>ParkingAvail</div>;
+  return (
+    <div>
+      <NavBar>ParkingAvail</NavBar>
+    </div>
+  );
 };
 //no of empty spots in the area

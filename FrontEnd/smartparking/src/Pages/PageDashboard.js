@@ -1,11 +1,14 @@
 import React from "react";
 import { MainDashboard } from "../Components/Dashboard/MainDashboard";
+import { NavBar } from "../Layouts/NavBar";
 
 const PageDashboard = () => {
   return (
     <div>
-      This is dashboarding page
-      <MainDashboard />
+      <NavBar>
+        This is dashboarding page
+        <MainDashboard />
+      </NavBar>
     </div>
   );
 };
