@@ -6,12 +6,22 @@ export const NavBar = () => {
     <div style={{ border: "1px solid black" }}>
       This is NavBar
       <nav>
-        <NavLink to="/dashboard/main">Home</NavLink>
-        <NavLink to="/dashboard/newParking">New Parking</NavLink>
-        <NavLink to="/dashboard/history">Parking History</NavLink>
-        <NavLink to="/dashboard/locations">Parking Locations</NavLink>
+        <ul>
+          <li>
+            <NavLink to="/dashboard/main">Home</NavLink>
+          </li>
+          <li>
+            <NavLink to="/dashboard/search">Find me Parking</NavLink>
+          </li>
+          <li>
+            <NavLink to="/dashboard/history">Parking History</NavLink>
+          </li>
+          <li>
+            <NavLink to="/dashboard/locations">Parking Locations</NavLink>
+          </li>
+        </ul>
       </nav>
-      <div style={{ border: "1px solid yellow" }}>
+      <div style={{ border: "1px solid blue" }}>
         <Outlet />
       </div>
     </div>

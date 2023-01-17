@@ -1,7 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { RecentParkingDisplay } from './RecentParkingDisplay'
 
-export const MainDashboard = ({ displayView }) => {
+export const MainDashboard = () => {
   return (
     <div>
       This is MainDashboard component
@@ -12,14 +13,14 @@ export const MainDashboard = ({ displayView }) => {
           </button>
         </Link>
       </div>
-      <div style={{ width: "200px", height: "200px", border: "1px solid black" }}>
+      <div style={{ width: "500px", height: "200px", border: "1px solid black" }}>
         This is MAP
       </div>
-      <div style={{ width: "200px", height: "100px", border: "1px solid black" }}>
-        This is Recently Parked Locations Component
+      <div style={{ width: "500px", height: "auto", border: "1px solid black" }}>
+        <RecentParkingDisplay />
       </div>
       <div>
-        <Link to='/dashboard/locations'>
+        <Link to='/dashboard/search'>
           <button>
             Search for parking locations
           </button>
