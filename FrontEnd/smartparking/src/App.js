@@ -8,6 +8,7 @@ import { NewParking } from "./Components/Dashboard/NewParking";
 import { ParkingHistory } from "./Components/Dashboard/ParkingHistory";
 import { ParkingAvail } from "./Components/Dashboard/ParkingAvail";
 import { MainDashboard } from "./Components/Dashboard/MainDashboard";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (

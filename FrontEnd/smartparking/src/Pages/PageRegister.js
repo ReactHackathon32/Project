@@ -1,7 +1,10 @@
 import React from "react";
+import { Register } from "../Components/Auth/Register";
 
 const PageRegister = () => {
-  return <div>PageRegister</div>;
+  return <div>
+    <Register />
+  </div>;
 };
 
-export default PageRegister;
+export default PageRegister
