@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
 
-export const NavBar = ({ children }) => {
+export const NavBar = () => {
   return (
     <div style={{ border: "1px solid black" }}>
       This is NavBar
