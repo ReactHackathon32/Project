@@ -1,6 +1,8 @@
 import React from 'react'
 import { RecentParkingItem } from './RecentParkingItem'
 import dummyCarparks from '../../Datas/Carpark'
+import { Row, Col } from 'react-bootstrap'
+import {AiFillCar} from "react-icons/ai"
 // const dummyRecents = [
 //     {
 //         "carparkId": "123",
@@ -29,10 +31,13 @@ export const RecentParkingDisplay = (props) => {
     return (
         <div>
             <div>
-                Recently Parked Locations
+                <big><AiFillCar /></big> Recently Parked
             </div>
+            <Row>
+            <Col></Col>
             {
                 dummyCarparks.map(recent => (
+                    <Col >
                     <RecentParkingItem
                         key={recent.carparkId}
                         id={recent.carparkId}
@@ -40,8 +45,12 @@ export const RecentParkingDisplay = (props) => {
                         location={recent.carparkName}
                         avail={recent.availableLots}
                     />
+                    </Col>
                 ))
             }
+            <Col></Col>
+      </Row>
+            
         </div>
     )
 }
