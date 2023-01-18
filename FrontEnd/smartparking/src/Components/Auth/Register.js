@@ -1,9 +1,13 @@
-import React from "react";
+import React, {useContext} from "react";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Container, Form, Button } from "react-bootstrap";
+import { UserContext } from "../../App";
 
 export const Register = () => {
+  const contextData = useContext(UserContext);
+  const navigate = useNavigate();
+
   const [formState, setFormState] = useState({
     email: "",
     firstName: "",
@@ -34,6 +38,8 @@ export const Register = () => {
     ) {
       setInvalidName(true);
       errors.push("firstName");
+    } else {
+      setInvalidName(false);
     }
 
     if (
@@ -42,32 +48,45 @@ export const Register = () => {
     ) {
       setInvalidName(true);
       errors.push("lastName");
+    } else {
+      setInvalidName(false);
     }
 
-    if (
-      !formState.email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)
-    ) {
+    if (!formState.email.match(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/)) {
       setInvalidEmail(true);
       errors.push("email");
+    } else {
+      setInvalidEmail(false);
     }
 
-    if (
-      !formState.password.match(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/
-      )
-    ) {
-      setInvalidPassword(true);
-      errors.push("password");
-    }
+    // TODO: Comment out for testing
+    // if (
+    //   !formState.password.match(
+    //     /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/
+    //   )
+    // ) {
+    //   setInvalidPassword(true);
+    //   errors.push("password");
+    // } else {
+    //   setInvalidPassword(false);
+    // }
 
     if (formState.password !== formState.confirmPassword) {
       setInvalidConfirmPassword(true);
       errors.push("confirmPassword");
+    } else {
+      setInvalidConfirmPassword(false);
     }
-    // if no errors, link to dashboard
 
-    
-    console.log(errors);
+    // if no errors, link to dashboard
+    if (errors.length === 0) {
+        localStorage.setItem("login", true);
+        contextData.loginAction(true);
+      navigate("/dashboard/main", {replace: true});
+    }
+
+    // console.log(formState.firstName, formState.lastName, formState.email, formState.password)
+    console.log('errors', errors);
   };
 
   return (
@@ -76,7 +95,7 @@ export const Register = () => {
         <div className="mt-5 pt-5 px-3 mx-auto form-input">
           <h2>REGISTER</h2>
           <p>Create your account. It's free and only takes a minute.</p>
-          <Form className="pt-3">
+          <Form>
             <div className="d-flex">
               <Form.Control
                 className="me-2"
@@ -99,7 +118,7 @@ export const Register = () => {
               <div
                 style={{ fontSize: "0.9rem", textAlign: "left", color: "red" }}
               >
-                Invalid first and last name
+                Invalid first and/or last name
               </div>
             ) : null}
 
@@ -153,7 +172,7 @@ export const Register = () => {
 
             <div className="d-grid mt-3">
               <Button variant="dark" onClick={register}>
-                SIGN UP
+                REGISTER
               </Button>
             </div>
             <p className="text-center pt-5">

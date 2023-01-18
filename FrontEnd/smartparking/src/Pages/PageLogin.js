@@ -1,10 +1,10 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Login } from '../Components/Auth/Login'
 
 const PageLogin = () => {
   return (
     <div>
-      <Link to='/dashboard'>Login Now!</Link>
+      <Login />
     </div>
   )
 }
