@@ -4,14 +4,14 @@ import PageLanding from "./Pages/PageLanding";
 import PageLogin from "./Pages/PageLogin";
 import PageRegister from "./Pages/PageRegister";
 import { NavBar } from "./Layouts/NavBar";
-import { ViewLocations } from "./Components/Dashboard/ViewLocations";
 import { MainDashboard } from "./Components/Dashboard/MainDashboard";
 import { NewParkingDisplay } from "./Components/Dashboard/NewParkingDisplay";
 import { SearchLocations } from "./Components/Dashboard/SearchLocations";
 import { ParkingHistoryDisplay } from "./Components/Dashboard/ParkingHistoryDisplay";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { createContext, useState } from "react";
-import {PageResetPassword} from './Pages/PageResetPassword'
+import { PageResetPassword } from "./Pages/PageResetPassword";
+import ViewLocationDisplay from "./Components/Dashboard/ViewLocationDisplay";
 
 export const UserContext = createContext();
 
@@ -41,7 +41,7 @@ function App() {
                 />
                 <Route
                   path="/dashboard/locations"
-                  element={<ViewLocations />}
+                  element={<ViewLocationDisplay />}
                 />
                 <Route path="/dashboard/search" element={<SearchLocations />} />
               </Route>
