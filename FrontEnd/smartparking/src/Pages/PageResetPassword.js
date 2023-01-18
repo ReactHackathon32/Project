@@ -49,7 +49,7 @@ export const PageResetPassword = () => {
     }
 
     if (errors.length === 0) {
-      navigate("/login", { replace: true });
+      navigate("/login", { replace: true, state: true });
     }
   };
 

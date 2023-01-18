@@ -1,16 +1,23 @@
 import React, { useState, useContext } from "react";
-import { Container, Form, Button } from "react-bootstrap";
-import { useNavigate, Link } from "react-router-dom";
+import { Container, Form, Button, Alert } from "react-bootstrap";
+import { useNavigate, Link, useLocation } from "react-router-dom";
 import { dummyUser } from "../../Datas/User";
 import { UserContext } from "../../App";
 
 export const Login = () => {
   const contextData = useContext(UserContext);
   const navigate = useNavigate();
+  const location = useLocation();
+  const fromReset = location.state;
+  const [show, setShow] = useState(true);
+
+  console.log("show", show);
+  console.log("location", location.state);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [invalidInput, setInvalidInput] = useState(false);
+  const [passwordResetSuccess, setPasswordResetSuccess] = useState(false);
 
   const verifyLogin = () => {
     dummyUser.map((user) => {
@@ -28,6 +35,11 @@ export const Login = () => {
   return (
     <React.Fragment>
       <Container>
+        {fromReset && show && (
+          <Alert className='m-3' variant="success" onClose={() => setShow(false)} dismissible>
+            <Alert.Heading>Password has been reset successfully!</Alert.Heading>
+          </Alert>
+        )}
         <div className="mt-5 pt-5 px-3 mx-auto form-input">
           <h2 className="text-center">MEMBER LOGIN</h2>
           <p className="text-center">
