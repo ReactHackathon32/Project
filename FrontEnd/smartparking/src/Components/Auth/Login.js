@@ -10,14 +10,18 @@ export const Login = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [invalidInput, setInvalidInput] = useState(false);
 
   const verifyLogin = () => {
     dummyUser.map((user) => {
       if (user.email === email && user.password === password) {
         localStorage.setItem("login", true);
         contextData.loginAction(true);
-        navigate("/dashboard/main", {replace: true});
-      } else console.log("false");
+        navigate("/dashboard/main", { replace: true });
+      } else {
+        console.log("false");
+        setInvalidInput(true);
+      }
     });
   };
 
@@ -39,14 +43,23 @@ export const Login = () => {
             />
 
             <Form.Control
-              className="mt-3"
+              className="mt-3 mb-1"
               type="password"
               name="password"
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            <p className="text-end pt-1 pb-2" style={{ fontSize: "0.9rem" }}>
+            {invalidInput === true ? (
+              <div
+                className="text-start"
+                style={{ color: "red", fontSize: "0.9rem" }}
+              >
+                Invalid email / password. Please try again.
+              </div>
+            ) : null}
+
+            <p className="text-end pb-2" style={{ fontSize: "0.9rem" }}>
               <Link to="/resetpassword">Forgot Password?</Link>
             </p>
 

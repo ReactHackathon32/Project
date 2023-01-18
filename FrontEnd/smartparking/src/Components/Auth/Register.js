@@ -93,8 +93,8 @@ export const Register = () => {
     <React.Fragment>
       <Container>
         <div className="mt-5 pt-5 px-3 mx-auto form-input">
-          <h2>REGISTER</h2>
-          <p>Create your account. It's free and only takes a minute.</p>
+          <h2 className="text-center">REGISTER</h2>
+          <p className="text-center">Create your account. It's free and only takes a minute.</p>
           <Form>
             <div className="d-flex">
               <Form.Control
