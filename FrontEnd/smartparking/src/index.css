@@ -49,7 +49,8 @@ body {
 .map-image {
   background-image: url("./assets/map-bg-img.jpg");
   object-fit: cover;
-  height: 40vh;
+  background-position: center;
+  height: 300px;
 }
 
 .search-carparks {
