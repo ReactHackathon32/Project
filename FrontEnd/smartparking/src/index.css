@@ -1,0 +1,39 @@
+/* REGISTER, LOGIN, RESET PASSWORD PAGES */
+.form-input {
+  max-width: 431px;
+}
+
+/* MAIN DASHBOARD */
+body {
+  /* background-color: #ebecf0; */
+  background-color: lightblue;
+}
+
+.map-image {
+    background-image: url('./assets/map-bg-img.jpg');
+    object-fit: cover;
+    height: 40vh;
+}
+
+.search-carparks {
+    background-color: #fff;
+    margin-top: 120px;
+}
+
+.circle {
+  height: 66px;
+  width: 66px;
+  border-radius: 50%;
+  display: inline-block;
+  background: #fff;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08), 0 0 6px rgba(0, 0, 0, 0.05);
+  transition: 0.3s transform cubic-bezier(0.155, 1.105, 0.295, 1.12),
+    0.3s box-shadow,
+    0.3s -webkit-transform cubic-bezier(0.155, 1.105, 0.295, 1.12);
+  cursor: pointer;
+}
+
+.circle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06);
+}

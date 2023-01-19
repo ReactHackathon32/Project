@@ -63,7 +63,7 @@ export const NavBar = () => {
                   <Nav.Link as={NavLink} to="/dashboard/main">Home</Nav.Link>
                   <Nav.Link as={NavLink} to="/dashboard/search">Search Parking</Nav.Link>
                   <Nav.Link as={NavLink} to="/dashboard/history">History</Nav.Link>
-                  <Nav.Link as={NavLink} to="/dashboard/locations">All Locations</Nav.Link>
+                  <Nav.Link className="mb-2" as={NavLink} to="/dashboard/locations">All Locations</Nav.Link>
                   <Logout />
                 </Nav>
                 

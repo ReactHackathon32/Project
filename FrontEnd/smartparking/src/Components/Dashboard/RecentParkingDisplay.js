@@ -31,13 +31,13 @@ export const RecentParkingDisplay = (props) => {
     return (
         <div>
             <div>
-                <big><AiFillCar /></big> Recently Parked
+                <h4 className='mb-3'><big><AiFillCar /></big> Recently Parked</h4>
             </div>
             <Row>
-            <Col></Col>
+            <Col xs={12} lg={2}></Col>
             {
                 dummyCarparks.map(recent => (
-                    <Col >
+                    <Col className='text-center'>
                     <RecentParkingItem
                         key={recent.carparkId}
                         id={recent.carparkId}
@@ -48,7 +48,7 @@ export const RecentParkingDisplay = (props) => {
                     </Col>
                 ))
             }
-            <Col></Col>
+            <Col xs={12} lg={2}></Col>
       </Row>
             
         </div>
