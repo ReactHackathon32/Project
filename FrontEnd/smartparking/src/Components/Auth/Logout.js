@@ -10,12 +10,12 @@ export const Logout = () => {
   const logout = () => {
     localStorage.setItem("login", false);
     contextData.loginAction(false);
-    navigate("/login");
+    navigate("/");
   };
 
   return (
     <div>
-      <Button onClick={logout} type="button">
+      <Button variant='dark' onClick={logout} type="button">
         Logout
       </Button>
     </div>

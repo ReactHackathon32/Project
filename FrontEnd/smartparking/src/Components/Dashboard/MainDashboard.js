@@ -22,10 +22,10 @@ export const MainDashboard = () => {
       
       <div className="my-5 d-flex justify-content-center">
         <Link to="/dashboard/locations">
-          <Button className="mx-2"><big><AiOutlineEye /></big> View Locations</Button>
+          <Button variant='dark' className="mx-2"><big><AiOutlineEye /></big> View Locations</Button>
         </Link>
         <Link to="/dashboard/history">
-          <Button className="mx-2"><big><MdHistory /></big> My History</Button>
+          <Button variant="outline-dark" className="mx-2"><big><MdHistory /></big> My History</Button>
         </Link>
       </div>
       
@@ -34,7 +34,7 @@ export const MainDashboard = () => {
       </div>
       <div className="text-center map-image my-5 rounded">
         <Link to="/dashboard/search">
-          <Button variant='outline-primary' className="search-carparks">Search available carparks <big><RxMagnifyingGlass /></big></Button>
+          <Button variant='outline-dark' className="search-carparks">Search available carparks <big><RxMagnifyingGlass /></big></Button>
         </Link>
       </div>
     </Container>
