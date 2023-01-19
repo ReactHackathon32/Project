@@ -4,9 +4,9 @@ import "./SearchBar.css";
 
 export const SearchLocationsResults = ({ isMatch }) => {
     return (
-        <div className="searchResults">
+        <div className="searchResults mb-5" style={{marginTop: '-48px'}}>
             {isMatch.map((carpark, i) => (
-                <Link
+                <Link 
                     className="link link-primary"
                     key={i}
                     to="/dashboard/newParking"
