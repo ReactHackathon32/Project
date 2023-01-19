@@ -84,3 +84,11 @@ body {
 .test {
   background-color: black;
 }
+
+/* MOBILE RESPONSIVE */
+
+@media screen and (max-width: 575px) {
+  #cta {
+    max-width: 340px;
+  }
+}
