@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ViewLocationItem from "./ViewLocationItem";
 import { Row, Col, Container } from "react-bootstrap";
 import { getCarparks } from "../../API/getCarparks";
+import { AiOutlineEye } from "react-icons/ai"
 
 const ViewLocationDisplay = () => {
   const [carparks, setCarparks] = useState()
@@ -24,7 +25,7 @@ const ViewLocationDisplay = () => {
       {isLoading ? <div>Page is Still Loading</div> :
         <div>
           <Container className="my-5">
-            <h2 className="my-4 text-center">All parking locations available</h2>
+            <h2 className="my-4 text-center"><big><AiOutlineEye /></big> All Parking Locations</h2>
             <Row className='g-4'>
               {carparks.map((carpark) => (
                 <Col xs={6} md={4} lg={3}>

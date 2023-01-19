@@ -31,7 +31,7 @@ export const RecentParkingDisplay = ({ historyData }) => {
     return (
         <div>
             <div>
-                <h4 className='mb-3'><big><AiFillCar /></big> Recently Parked</h4>
+                <h3 className='mb-3 text-center'><big><AiFillCar /></big> Recently Parked</h3>
             </div>
             <Row>
                 <Col xs={12} lg={2}></Col>

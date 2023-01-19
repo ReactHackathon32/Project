@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Container } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import { getHistory } from "../../API/getHistory";
 import { ParkingHistoryItem } from "./ParkingHistoryItem";
+import { MdHistory} from 'react-icons/md';
 
 export const ParkingHistoryDisplay = () => {
   const [history, setHistory] = useState()
@@ -24,8 +25,13 @@ export const ParkingHistoryDisplay = () => {
   return (
     <>
       {isLoading ? <>Page is loading</> :
-        <Container>
+        <Container className="my-5">
+          <h2 className="my-4 text-center"><big><MdHistory /></big> My Parking History</h2>
+          <Row className='g-4'>
+
+          
           {history.map(each => (
+            <Col xs={6} md={4} lg={3}>
             <ParkingHistoryItem
               key={each.parkingId}
               parkingId={each.parkingId}
@@ -35,7 +41,9 @@ export const ParkingHistoryDisplay = () => {
               startTime={each.startTime}
               endTime={each.endTime}
             />
+            </Col>
           ))}
+          </Row>
         </Container>}
     </>
 

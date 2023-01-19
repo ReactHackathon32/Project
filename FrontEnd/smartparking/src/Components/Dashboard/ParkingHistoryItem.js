@@ -1,4 +1,6 @@
 import React from 'react'
+import { Card } from 'react-bootstrap';
+
 
 export const ParkingHistoryItem = ({ parkingId, carparkName, basePrice, startTime, endTime, chargePrice }) => {
 
@@ -14,11 +16,21 @@ export const ParkingHistoryItem = ({ parkingId, carparkName, basePrice, startTim
     let durationParked = millisToMinutesAndSeconds(difference)
 
     return (
-        <div>
-            <p>Carpark Name: {carparkName}</p>
-            <p>Base Price : {basePrice}</p>
-            <p>Parking Duration: {durationParked} minutes</p>
-            <p>Total cost of parking: {chargePrice}</p>
-        </div>
+        <Card>
+      <Card.Body>
+        <Card.Title>Carpark Name: {carparkName}</Card.Title>
+        <Card.Subtitle className="mb-2 text-muted">Base Price : {basePrice}<br /></Card.Subtitle>
+        <Card.Text>
+        Parking Duration: {durationParked} mins <br/>
+        Total cost of parking: $ {chargePrice}
+        </Card.Text>
+      </Card.Body>
+    </Card>
+        // <div>
+        //     <p>Carpark Name: {carparkName}</p>
+        //     <p>Base Price : {basePrice}</p>
+        //     <p>Parking Duration: {durationParked} minutes</p>
+        //     <p>Total cost of parking: {chargePrice}</p>
+        // </div>
     )
 }

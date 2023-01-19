@@ -3,6 +3,7 @@ import { SearchLocationsResults } from "./SearchLocationsResults";
 import { RecentParkingDisplay } from "./RecentParkingDisplay";
 import { Container, Row } from "react-bootstrap";
 import { getCarparks } from '../../API/getCarparks'
+import { RxMagnifyingGlass } from 'react-icons/rx'
 
 export const SearchLocations = () => {
   const [input, setInput] = useState();
@@ -40,9 +41,10 @@ export const SearchLocations = () => {
     <>
       {isLoading ? <div>Page is Loading</div> :
         <Container>
+          <h2 className="text-center mt-5 mb-4"><big><RxMagnifyingGlass /></big> Search Parking Locations</h2>
           <Row className="justify-content-md-center">
             <input
-              className="rounded-pill py-2 my-1"
+              className="rounded-pill py-2 mb-5"
               placeholder="Search for Carparks"
               type="search"
               value={input || ""}
@@ -54,7 +56,7 @@ export const SearchLocations = () => {
               <p></p>
             )}
             <RecentParkingDisplay></RecentParkingDisplay>
-            <h1 className="my-5">Favourites go here</h1>
+            <h3 className="my-5 text-center">(Favourites go here)</h3>
           </Row>
         </Container>}
     </>

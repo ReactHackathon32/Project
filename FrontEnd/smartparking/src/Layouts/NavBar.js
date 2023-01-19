@@ -58,7 +58,7 @@ export const NavBar = ({ userDetails }) => {
               <Nav className="justify-content-end flex-grow-1 pe-3">
                 <Nav.Link as={Link} to="/dashboard/main">Home</Nav.Link>
                 <Nav.Link as={Link} to="/dashboard/search">Search Parking</Nav.Link>
-                <Nav.Link as={Link} to="/dashboard/history">History</Nav.Link>
+                <Nav.Link as={Link} to="/dashboard/history">My History</Nav.Link>
                 <Nav.Link className="mb-2" as={Link} to="/dashboard/locations">All Locations</Nav.Link>
                 <Logout />
               </Nav>
