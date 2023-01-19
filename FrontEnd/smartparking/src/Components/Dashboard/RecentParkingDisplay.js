@@ -26,7 +26,11 @@ export const RecentParkingDisplay = () => {
     // console.log(history);
     return (
         <> {
-            isLoading ? <p>Loading......</p> : <div>
+            isLoading ? <div className="text-center" style={{ marginLeft: 'auto', marginRight: 'auto' }}>
+                <h2>
+                    Retrieving information for Recent Parkings...
+                </h2>
+            </div> : <div>
                 <div>
                     <h3 className='mb-3 text-center'><big><AiFillCar /></big> Recently Parked</h3>
                 </div>

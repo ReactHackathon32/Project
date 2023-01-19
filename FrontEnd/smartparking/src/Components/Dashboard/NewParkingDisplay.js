@@ -30,7 +30,11 @@ export const NewParkingDisplay = () => {
 
   return (
     <>
-      {isLoading ? <p>Loading......</p> :
+      {isLoading ? <div className="text-center" style={{ marginLeft: 'auto', marginRight: 'auto', paddingTop: '300px' }}>
+        <h2>
+          Retrieving information for New Parking Details...
+        </h2>
+      </div> :
         (
           carparks.map(carpark => {
             if (carpark.carparkId == curCarparkId) {
