@@ -1,13 +1,18 @@
 import React from "react";
+import { Card } from "react-bootstrap";
 
 const ViewLocationItem = (props) => {
   return (
-    <div>
-      <h1>Carpark Name: {props.name}</h1>
-      <h3>Current Price: {props.dynamicPrice}</h3>
-      <p>Available Slots: {props.availableLots}</p>
-      <p style={{ border: "1px solid black" }}></p>
-    </div>
+
+      <Card style={{  }}>
+      <Card.Body>
+        <Card.Title>{props.name}</Card.Title>
+        <Card.Subtitle className="mb-2 text-muted">$ {props.dynamicPrice} / hr <br /></Card.Subtitle>
+        <Card.Text>
+          {props.availableLots} lots available
+        </Card.Text>
+      </Card.Body>
+    </Card>
   );
 };
 
