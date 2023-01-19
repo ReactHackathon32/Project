@@ -14,7 +14,7 @@ export const PageLanding = () => {
       </div>
       <div id="cta">
         <h1 className="display-4">
-          DynaPrice <FaParking className="mb-2" />
+          DynaPark <FaParking className="mb-2" />
         </h1>
         <big>
           <p>Providing you with the cheapest carpark nearby</p>

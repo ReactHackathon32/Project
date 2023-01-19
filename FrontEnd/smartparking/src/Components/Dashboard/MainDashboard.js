@@ -12,7 +12,7 @@ export const MainDashboard = () => {
 
   return (
     <Container className="my-5">
-      <h2 className="text-center"><big><AiFillHome /></big> Home</h2>
+      <h2 className="text-center"><big><AiFillHome /></big></h2>
       <div className="my-5 d-flex justify-content-center">
         <Link to="/dashboard/locations">
           <Button variant='dark' className="mx-2"><big><AiOutlineEye /></big> All Locations</Button>

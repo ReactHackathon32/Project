@@ -1,43 +1,142 @@
-import React from "react";
-import { Button, Card } from "react-bootstrap";
+import React, { useContext, useEffect, useState } from "react";
+import { Button } from "react-bootstrap";
+import { getCurrentParking } from "../../API/getCurrentParking";
+import { startParking } from "../../API/startParking";
+import { stopParking } from "../../API/stopParking";
+import { UserContext } from "../../App";
+import LoadingSpinner from "../../Layouts/LoadingSpinner";
+import CurrentParkingOverlay from "./CurrentParkingOverlay";
+import Timer from "./Timer";
+
 export const NewParkingItem = ({ id, name, dynamicPrice, avail }) => {
+  const token = localStorage.getItem("token")
+  const userId = localStorage.getItem("userId")
+  const [startResp, setStartResp] = useState()
+  const [stopResp, setStopResp] = useState()
+  const [isParking, setIsParking] = useState()
+  const [loadingCur, setLoadingCur] = useState(false)
+  const [curParking, setCurParking] = useState()
+  const [totalCost, setTotalCost] = useState()
+  const [isLoading, setIsLoading] = useState(false)
+  const [timer, setTimer] = useState(false)
+
+  const contextData = useContext(UserContext)
+
+
+  useEffect(() => {
+    if (localStorage.getItem("isParking") === 'false') setIsParking(false)
+    if (localStorage.getItem("isParking") === 'true') setIsParking(true)
+    const intervalId = setInterval(() => {
+      getCurrentParking(userId, token)
+        .then(response => {
+          console.log("getCurParking:", response.data);
+          setCurParking(response.data)
+          setTotalCost(response.data.price)
+        })
+        .catch(error => {
+          console.log("Error fetching current parking data:", error)
+        })
+        .finally(() => {
+          setLoadingCur(false)
+        })
+    }, 120000)
+
+    return () => clearInterval(intervalId)
+
+  }, [isParking])
+
+  function startHandler() {
+
+    setIsLoading(true)
+    startParking(id, userId, token)
+      .then(response => {
+        setTimer(true)
+        console.log("startParking:", response.data);
+        setStartResp(response.data)
+        setIsParking(true)
+        contextData.setParking(true)
+        localStorage.setItem('isParking', true)
+        localStorage.setItem('curCarparkObj', curParking)
+        contextData.setCurCarparkObj(curParking)
+      })
+      .catch(error => {
+        console.log("Error fetching start data:", error);
+      })
+      .finally(() => {
+        setIsLoading(false)
+      })
+  }
+
+  function stopHandler() {
+    setIsLoading(true)
+    stopParking(userId, token)
+      .then(response => {
+        setTimer(false)
+        console.log("stopParking:", response.data);
+        setStartResp(response.data)
+        setIsParking(false)
+        contextData.setParking(false)
+        localStorage.setItem('isParking', false)
+        localStorage.setItem('curCarparkObj')
+        contextData.setCurCarparkObj()
+      })
+      .catch(error => {
+        console.log("Error fetching stop data:", error);
+      })
+      .finally(() => {
+        setIsLoading(false)
+      })
+    console.log("stopResponse:", stopResp);
+  }
   return (
     <>
       <h2 className="text-center mt-5 mb-4">NEW PARKING DETAILS</h2>
       <div className="map-image"></div>
       <h4 className="text-center mt-5 mb-3">Dynamic Pricing</h4>
       <div className="d-flex justify-content-center">
-        <div
-          className="d-flex justify-content-center rounded align-items-center"
-          style={{ backgroundColor: "white", width: "300px", height: "150px" }}
-        >
-          <div className="pe-4">
-            Ends At
-            <br />
-            (TIME)
-          </div>
+        {loadingCur ? (
+          <div>Loading...</div>
+        ) : (
           <div
-            style={{
-              float: "left",
-              height: "70px",
-              width: "2px",
-              backgroundColor: "black",
-            }}
-          ></div>
-          <div className="ps-4">
-            Cost
-            <br />
-            (PRICE)
+            className="d-flex justify-content-center rounded align-items-center"
+            style={{ backgroundColor: "white", width: "300px", height: "80px" }}
+          >
+            <div className="pe-4">
+              Total cost
+              <br />
+              {isParking ? (totalCost) : <>-</>}
+            </div>
+            <div
+              style={{
+                float: "left",
+                height: "70px",
+                width: "2px",
+                backgroundColor: "black",
+              }}
+            ></div>
+            <div className="ps-4">
+              Current Price
+              <br />
+              {dynamicPrice}
+            </div>
           </div>
-        </div>
+        )}
+
       </div>
-      {/* <Button className='me-2' variant='dark'>Ends At<br />(TIME)</Button>
-                    <Button className='ms-2' variant='outline-dark'>Cost<br />(PRICE)</Button> */}
       <div className="text-center my-5">
         <h3>Carpark Name: {name}</h3>
-        <h5 className="text-muted">Current Price: $ {dynamicPrice} / 30mins</h5>
         <h5>Available Lots: {avail}</h5>
-        <Button variant="dark">Park Here</Button>
+        {isParking ? (
+          <></>
+        ) : (
+          <h5 className="text-muted">Current Price: $ {dynamicPrice} / 30mins</h5>
+        )}
+        {isParking ?
+          isLoading ? (<LoadingSpinner />) : (<Button variant="dark" onClick={stopHandler}>Stop Parking</Button>)
+          : isLoading ? (<LoadingSpinner />) : (<Button variant="dark" onClick={startHandler}>Park Here</Button>)
+        }
+      </div>
+      <div>
       </div>
     </>
   );

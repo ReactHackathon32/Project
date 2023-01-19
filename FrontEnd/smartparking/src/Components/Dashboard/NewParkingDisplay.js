@@ -2,17 +2,18 @@ import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { useLocation } from "react-router";
 import { getCarparks } from "../../API/getCarparks";
-import dummyCarparks from "../../Datas/Carpark";
+import LoadingSpinner from "../../Layouts/LoadingSpinner";
 import { NewParkingItem } from "./NewParkingItem";
 
 export const NewParkingDisplay = () => {
   const [carparks, setCarparks] = useState()
   const [isLoading, setIsLoading] = useState(true)
+  const [curCarparkId, setCurCarparkId] = useState()
 
   const location = useLocation()
-  let curCarparkId = location.state.carparkId
 
   useEffect(() => {
+    setCurCarparkId(location.state.carparkId)
     getCarparks()
       .then(response => {
         setCarparks(response.data)
@@ -25,12 +26,10 @@ export const NewParkingDisplay = () => {
       })
   }, [])
 
-  console.log("All Carparks:", carparks);
-  console.log("curCarparkId:", curCarparkId);
-
   return (
     <>
       {isLoading ? <div className="text-center" style={{ marginLeft: 'auto', marginRight: 'auto', paddingTop: '300px' }}>
+        <LoadingSpinner />
         <h2>
           Retrieving information for New Parking Details...
         </h2>
@@ -41,7 +40,7 @@ export const NewParkingDisplay = () => {
               return (<Container>
                 <NewParkingItem
                   key={carpark.carparkId}
-                  id={carpark.id}
+                  id={carpark.carparkId}
                   name={carpark.carparkName}
                   dynamicPrice={carpark.dynamicPrice}
                   avail={carpark.availableLots}

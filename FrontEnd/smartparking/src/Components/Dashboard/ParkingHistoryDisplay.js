@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { getHistory } from "../../API/getHistory";
 import { ParkingHistoryItem } from "./ParkingHistoryItem";
-import { MdHistory} from 'react-icons/md';
+import { MdHistory } from 'react-icons/md';
+import LoadingSpinner from "../../Layouts/LoadingSpinner";
 
 export const ParkingHistoryDisplay = () => {
   const [history, setHistory] = useState()
@@ -24,29 +25,30 @@ export const ParkingHistoryDisplay = () => {
 
   return (
     <>
-      {isLoading ? <div className="text-center" style={{marginLeft: 'auto', marginRight: 'auto', paddingTop: '300px'}}>
+      {isLoading ? <div className="text-center" style={{ marginLeft: 'auto', marginRight: 'auto', paddingTop: '300px' }}>
+        <LoadingSpinner />
         <h2>
           Retrieving information for My History...
         </h2>
-        </div>  :
+      </div> :
         <Container className="my-5">
           <h2 className="my-4 text-center"><big><MdHistory /></big> My Parking History</h2>
           <Row className='g-4'>
 
-          
-          {history.map(each => (
-            <Col xs={6} md={4} lg={3}>
-            <ParkingHistoryItem
-              key={each.parkingId}
-              parkingId={each.parkingId}
-              carparkName={each.carpark.carparkName}
-              basePrice={each.carpark.basePrice}
-              chargePrice={each.price}
-              startTime={each.startTime}
-              endTime={each.endTime}
-            />
-            </Col>
-          ))}
+
+            {history.map(each => (
+              <Col xs={6} md={4} lg={3}>
+                <ParkingHistoryItem
+                  key={each.parkingId}
+                  parkingId={each.parkingId}
+                  carparkName={each.carpark.carparkName}
+                  basePrice={each.carpark.basePrice}
+                  chargePrice={each.price}
+                  startTime={each.startTime}
+                  endTime={each.endTime}
+                />
+              </Col>
+            ))}
           </Row>
         </Container>}
     </>

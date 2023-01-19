@@ -1,45 +1,21 @@
-// import React from "react";
-// import { NavLink, Outlet } from "react-router-dom";
-
-// export const NavBar = () => {
-//   return (
-//     <div style={{ border: "1px solid black" }}>
-//       This is NavBar
-//       <nav>
-//         <ul>
-//           <li>
-//             <NavLink to="/dashboard/main">Home</NavLink>
-//           </li>
-//           <li>
-//             <NavLink to="/dashboard/search">Find me Parking</NavLink>
-//           </li>
-//           <li>
-//             <NavLink to="/dashboard/history">Parking History</NavLink>
-//           </li>
-//           <li>
-//             <NavLink to="/dashboard/locations">Parking Locations</NavLink>
-//           </li>
-//         </ul>
-//       </nav>
-//       <div style={{ border: "1px solid blue" }}>
-//         <Outlet />
-//       </div>
-//     </div>
-//   );
-// };
-
-import React, { useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link, Outlet } from "react-router-dom";
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import { Logout } from "../Components/Auth/Logout";
+import CurrentParkingOverlay from "../Components/Dashboard/CurrentParkingOverlay";
+import { UserContext } from "../App";
+import context from "react-bootstrap/esm/AccordionContext";
 
-export const NavBar = ({ userDetails }) => {
+//TODO: collapse navbar on selection
+//TODO: (Zin) pass down fetched data with NavLink to next components
 
-  //TODO: collapse navbar on selection
-  //TODO: (Zin) pass down fetched data with NavLink to next components
+export const NavBar = () => {
+  const contextData = useContext(UserContext)
+  console.log("context Parked in NavBar:", contextData.isParked);
+  console.log("context Parked in NavBar:", typeof contextData.isParked);
   return (
     <div>
       <Navbar bg="light" expand={false} className="mb-3">
@@ -66,7 +42,7 @@ export const NavBar = ({ userDetails }) => {
           </Navbar.Offcanvas>
         </Container>
       </Navbar>
-
+      <CurrentParkingOverlay isShowing={contextData.isParked} />
       <div>
         <Outlet />
       </div>

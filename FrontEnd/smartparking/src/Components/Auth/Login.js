@@ -4,8 +4,10 @@ import { useNavigate, Link, useLocation } from "react-router-dom";
 import { UserContext } from "../../App";
 import { FaParking } from "react-icons/fa";
 import { postLogin } from "../../API/postLogin";
+import { getCurrentParking } from "../../API/getCurrentParking";
+import context from "react-bootstrap/esm/AccordionContext";
 
-export const Login = ({ setUserDetails }) => {
+export const Login = () => {
   const contextData = useContext(UserContext);
   const navigate = useNavigate();
   const location = useLocation();
@@ -20,6 +22,7 @@ export const Login = ({ setUserDetails }) => {
   const [curToken, setCurToken] = useState()
   const [curUserId, setCurUserId] = useState()
   const [isLoading, setIsLoading] = useState(true)
+  const [isParking, setIsParking] = useState()
 
   const loginHandler = () => {
     postLogin(email, password)
@@ -39,6 +42,18 @@ export const Login = ({ setUserDetails }) => {
 
   useEffect(() => {
     verifyLogin()
+    getCurrentParking(curUserId, curToken)
+      .then(response => {
+        console.log("getCurrentParking in Login:", response.data);
+        localStorage.setItem("curCarparkObj", response.data.carpark)
+        localStorage.setItem("isParking", true)
+        contextData.setCurCarparkObj(response.data)
+        console.log("This This:", response.data);
+        setIsParking(true)
+      })
+      .catch(error => {
+        console.log("Error getCurrentParking Fetching:", error);
+      })
   }, [loginResult])
 
   const verifyLogin = async () => {

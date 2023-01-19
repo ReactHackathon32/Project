@@ -92,3 +92,10 @@ body {
     max-width: 340px;
   }
 }
+
+/* Search Input style to eliminate yellow border on focus */
+
+/* input[type=search]:focus {
+  color: black;
+  border: 1px solid #555;
+} */

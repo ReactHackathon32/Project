@@ -4,6 +4,7 @@ import { RecentParkingDisplay } from "./RecentParkingDisplay";
 import { Container, Row } from "react-bootstrap";
 import { getCarparks } from '../../API/getCarparks'
 import { RxMagnifyingGlass } from 'react-icons/rx'
+import LoadingSpinner from "../../Layouts/LoadingSpinner";
 
 export const SearchLocations = () => {
   const [input, setInput] = useState();
@@ -39,16 +40,18 @@ export const SearchLocations = () => {
   }
   return (
     <>
-      {isLoading ? <div className="text-center" style={{marginLeft: 'auto', marginRight: 'auto', paddingTop: '300px'}}>
+      {isLoading ? <div className="text-center" style={{ marginLeft: 'auto', marginRight: 'auto', paddingTop: '300px' }}>
+        <LoadingSpinner />
         <h2>
           Retrieving information for Search Parking...
         </h2>
-        </div>  :
+      </div> :
         <Container>
           <h2 className="text-center mt-5 mb-4"><big><RxMagnifyingGlass /></big> Search Parking Locations</h2>
           <Row className="justify-content-md-center">
             <input
               className="rounded-pill py-2 mb-5"
+              autoFocus
               placeholder="Search for Carparks"
               type="search"
               value={input || ""}
@@ -59,7 +62,7 @@ export const SearchLocations = () => {
             ) : (
               <p></p>
             )}
-            <RecentParkingDisplay></RecentParkingDisplay>
+            <RecentParkingDisplay />
             <h3 className="my-5 text-center">(Favourites go here)</h3>
           </Row>
         </Container>}

@@ -18,21 +18,23 @@ export const UserContext = createContext();
 function App() {
   const getUserLogin = localStorage.getItem("login") === "true";
   const [userLogin, setUserLogin] = useState(getUserLogin);
-  const [userDetails, setUserDetails] = useState({ "token": '', "userId": '' })
+  const getParkingStatus = localStorage.getItem("isParking") === "true";
+  const [parkingStatus, setParkingStatus] = useState(getParkingStatus);
+  const [curCarparkObj, setCurCarparkObj] = useState({})
 
   // console.log("userDetails in App.js:", userDetails);
 
   return (
     <div className="App">
-      <UserContext.Provider value={{ loginAction: setUserLogin }}>
+      <UserContext.Provider value={{ loginAction: setUserLogin, setParking: setParkingStatus, isParked: parkingStatus, setCurCarparkObj: setCurCarparkObj, curCarparkObj: curCarparkObj }}>
         <Routes>
           <Route path="/" element={<PageLanding />} />
-          <Route path="/login" element={<PageLogin setUserDetails={setUserDetails} />} />
+          <Route path="/login" element={<PageLogin />} />
           <Route path="/register" element={<PageRegister />} />
           <Route path="/resetpassword" element={<PageResetPassword />} />
           {userLogin && (
             <>
-              <Route path="/dashboard" element={<NavBar userDetails={userDetails} />}>
+              <Route path="/dashboard" element={<NavBar />}>
                 <Route path="/dashboard/main" element={<MainDashboard />} />
                 <Route
                   path="/dashboard/newParking"

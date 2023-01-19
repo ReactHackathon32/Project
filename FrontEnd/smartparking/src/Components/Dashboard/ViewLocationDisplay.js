@@ -3,6 +3,7 @@ import ViewLocationItem from "./ViewLocationItem";
 import { Row, Col, Container } from "react-bootstrap";
 import { getCarparks } from "../../API/getCarparks";
 import { AiOutlineEye } from "react-icons/ai"
+import LoadingSpinner from "../../Layouts/LoadingSpinner";
 
 const ViewLocationDisplay = () => {
   const [carparks, setCarparks] = useState()
@@ -22,11 +23,12 @@ const ViewLocationDisplay = () => {
 
   return (
     <>
-      {isLoading ? <div className="text-center" style={{marginLeft: 'auto', marginRight: 'auto', paddingTop: '300px'}}>
+      {isLoading ? <div className="text-center" style={{ marginLeft: 'auto', marginRight: 'auto', paddingTop: '300px' }}>
+        <LoadingSpinner />
         <h2>
           Retrieving information for All Locations...
         </h2>
-        </div> :
+      </div> :
         <div>
           <Container className="my-5">
             <h2 className="my-4 text-center"><big><AiOutlineEye /></big> All Parking Locations</h2>

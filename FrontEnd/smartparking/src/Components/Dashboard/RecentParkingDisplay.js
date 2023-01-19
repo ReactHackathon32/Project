@@ -4,6 +4,7 @@ import dummyCarparks from '../../Datas/Carpark'
 import { Row, Col } from 'react-bootstrap'
 import { AiFillCar } from "react-icons/ai"
 import { getHistory } from '../../API/getHistory'
+import LoadingSpinner from '../../Layouts/LoadingSpinner'
 
 export const RecentParkingDisplay = () => {
     const [history, setHistory] = useState()
@@ -27,6 +28,7 @@ export const RecentParkingDisplay = () => {
     return (
         <> {
             isLoading ? <div className="text-center" style={{ marginLeft: 'auto', marginRight: 'auto' }}>
+                <LoadingSpinner />
                 <h2>
                     Retrieving information for Recent Parkings...
                 </h2>
@@ -37,7 +39,7 @@ export const RecentParkingDisplay = () => {
                 <Row>
                     <Col xs={12} lg={2}></Col>
                     {
-                        history.map((recent) => (
+                        history.slice(0, 4).map((recent) => (
                             <Col className='text-center'>
                                 <RecentParkingItem
                                     key={recent.carpark.carparkId}

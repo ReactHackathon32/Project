@@ -9,6 +9,7 @@ export const Logout = () => {
 
   const logout = () => {
     localStorage.setItem("login", false);
+    localStorage.setItem("isParking", false);
     contextData.loginAction(false);
     navigate("/");
   };
