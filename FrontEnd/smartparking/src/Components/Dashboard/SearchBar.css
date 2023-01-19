@@ -1,0 +1,42 @@
+.searchIcon {
+  height: 60px;
+  width: 50px;
+  background-color: white;
+  display: grid;
+  /* place-item: center; */
+}
+
+/* styling for search results container */
+.searchResults {
+  /* width: 200px; */
+  height: 100px;
+  background-color: white;
+  border-radius: 15px;
+}
+
+/* styling for everything inside the search container */
+.searchResults .searchItem {
+  /* width: 100%; */
+  height: 50px;
+  padding-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 0.5px solid lightgrey;
+}
+
+/* Margin for p tags */
+.searchItem p {
+  margin-left: 10px;
+}
+
+/* Link component styling */
+.link {
+  text-decoration: none;
+}
+
+/* hover styling */
+.link :hover {
+  background-color: lightgrey;
+  border-radius: 4px;
+}
