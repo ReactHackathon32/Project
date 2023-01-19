@@ -65,16 +65,16 @@ export const Register = () => {
     }
 
     // TODO: Comment out for testing
-    // if (
-    //   !formState.password.match(
-    //     /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/
-    //   )
-    // ) {
-    //   setInvalidPassword(true);
-    //   errors.push("password");
-    // } else {
-    //   setInvalidPassword(false);
-    // }
+    if (
+      !formState.password.match(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/
+      )
+    ) {
+      setInvalidPassword(true);
+      errors.push("password");
+    } else {
+      setInvalidPassword(false);
+    }
 
     if (formState.password !== formState.confirmPassword) {
       setInvalidConfirmPassword(true);

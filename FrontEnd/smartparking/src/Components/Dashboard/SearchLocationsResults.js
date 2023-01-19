@@ -13,8 +13,8 @@ export const SearchLocationsResults = ({ isMatch }) => {
                     state={{ carpark: carpark.carparkId }}
                 >
                     <div className="searchItem">
-                        <p>Name: {carpark.carparkName}</p>
-                        <p>Available lots: {carpark.availableLots}</p>
+                        <p style={{color: 'black'}}>Name: {carpark.carparkName}</p>
+                        <p style={{color: 'black'}}>(Available lots: {carpark.availableLots})</p>
                     </div>
                 </Link>
             ))}
