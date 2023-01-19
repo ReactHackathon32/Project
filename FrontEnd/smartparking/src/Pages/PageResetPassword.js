@@ -57,7 +57,7 @@ export const PageResetPassword = () => {
     <React.Fragment>
       <Container>
         <div className="mt-5 pt-5 px-3 mx-auto form-input">
-          <h2 className="text-center mb-5">RESET PASSWORD</h2>
+          <h2 className="text-center mb-5">FORGOT PASSWORD</h2>
           {changePage === true ? (
             <Form>
               <Form.Control

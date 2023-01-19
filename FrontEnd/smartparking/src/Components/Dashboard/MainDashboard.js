@@ -32,7 +32,7 @@ export const MainDashboard = () => {
       <div className="my-5">
         <RecentParkingDisplay />
       </div>
-      <div className="text-center map-image my-5">
+      <div className="text-center map-image my-5 rounded">
         <Link to="/dashboard/search">
           <Button variant='outline-primary' className="search-carparks">Search available carparks <big><RxMagnifyingGlass /></big></Button>
         </Link>

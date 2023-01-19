@@ -1,17 +1,22 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import bg from '../assets/bg.mp4'
+import { Button } from 'react-bootstrap'
+import { FaParking } from 'react-icons/fa'
+import { BiLogIn } from 'react-icons/bi'
+import { BsFillPencilFill } from 'react-icons/bs'
 
 export const PageLanding = () => {
   return (
     <div>
-      <div style={{ width: "500px", height: "500px", border: "1px solid black" }}>
-        This is info of our app / advertise
+      <div id='bg-video'>
+        <video src={bg} autoPlay loop muted />
       </div>
-      <div>
-        <Link to='/login'>Login</Link>
-      </div>
-      <div>
-        <Link to='/register'>Register</Link>
+      <div id="cta">
+        <h1 className='display-4'>DynaPrice <FaParking /></h1>
+        <big><p>Providing you with the cheapest carpark nearby</p></big>
+        <Link className='me-2' to='/login'><Button variant='dark'><BiLogIn /> Login</Button></Link>
+        <Link className='ms-2' to='/register'><Button variant='outline-dark'><BsFillPencilFill /> Register</Button></Link>
       </div>
     </div>
   )
