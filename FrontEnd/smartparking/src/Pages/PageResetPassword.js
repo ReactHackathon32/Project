@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Container, Form, Button } from "react-bootstrap";
 import { dummyUser } from "../Datas/User";
 import { useNavigate } from "react-router-dom";
+import { FaParking } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 export const PageResetPassword = () => {
   const navigate = useNavigate();
@@ -57,6 +59,7 @@ export const PageResetPassword = () => {
     <React.Fragment>
       <Container>
         <div className="mt-5 pt-5 px-3 mx-auto form-input">
+        <Link to="/"><div className="text-center mb-4" style={{ fontSize: '3.5rem', color: 'black'}} ><FaParking /></div></Link>
           <h2 className="text-center mb-5">FORGOT PASSWORD</h2>
           {changePage === true ? (
             <Form>

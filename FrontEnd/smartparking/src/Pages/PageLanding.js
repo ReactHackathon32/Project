@@ -13,7 +13,7 @@ export const PageLanding = () => {
         <video src={bg} autoPlay loop muted />
       </div>
       <div id="cta">
-        <h1 className='display-4'>DynaPrice <FaParking /></h1>
+        <h1 className='display-4'>DynaPrice <FaParking className='mb-2'/></h1>
         <big><p>Providing you with the cheapest carpark nearby</p></big>
         <Link className='me-2' to='/login'><Button variant='dark'><BiLogIn /> Login</Button></Link>
         <Link className='ms-2' to='/register'><Button variant='outline-dark'><BsFillPencilFill /> Register</Button></Link>

@@ -3,6 +3,7 @@ import { Container, Form, Button, Alert } from "react-bootstrap";
 import { useNavigate, Link, useLocation } from "react-router-dom";
 import { dummyUser } from "../../Datas/User";
 import { UserContext } from "../../App";
+import { FaParking } from "react-icons/fa";
 
 export const Login = () => {
   const contextData = useContext(UserContext);
@@ -17,7 +18,6 @@ export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [invalidInput, setInvalidInput] = useState(false);
-  const [passwordResetSuccess, setPasswordResetSuccess] = useState(false);
 
   const verifyLogin = () => {
     dummyUser.map((user) => {
@@ -41,6 +41,8 @@ export const Login = () => {
           </Alert>
         )}
         <div className="mt-5 pt-5 px-3 mx-auto form-input">
+        <Link to="/"><div className="text-center mb-4" style={{ fontSize: '3.5rem', color: 'black'}} ><FaParking /></div></Link>
+
           <h2 className="text-center">MEMBER LOGIN</h2>
           <p className="text-center">
             Enter your email and password to access your account.
