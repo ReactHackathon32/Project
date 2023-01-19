@@ -1,56 +1,51 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { RecentParkingItem } from './RecentParkingItem'
 import dummyCarparks from '../../Datas/Carpark'
 import { Row, Col } from 'react-bootstrap'
 import { AiFillCar } from "react-icons/ai"
-// const dummyRecents = [
-//     {
-//         "carparkId": "123",
-//         "dynamicPrice": "4.20",
-//         "location": "east",
-//         "duration": "30", // in minutes?
-//     },
-//     {
-//         "carparkId": "233",
-//         "dynamicPrice": "3.90",
-//         "location": "south",
-//         "duration": "75", // in minutes?
-//     },
-//     {
-//         "carparkId": "333",
-//         "dynamicPrice": "4.10",
-//         "location": "west",
-//         "duration": "65", // in minutes?
-//     },
-// ]
+import { getHistory } from '../../API/getHistory'
 
-// TODO-Zin --> Farhan : dataStructure for recent parkings
-// TODO-Zin : Change props for "price parked at" and add in "current price"
+export const RecentParkingDisplay = () => {
+    const [history, setHistory] = useState()
+    // const [mostRecent, setMostRecent] = useState()
+    const [isLoading, setIsLoading] = useState(true)
 
-export const RecentParkingDisplay = ({ historyData }) => {
+    const token = localStorage.getItem("token")
+    const userId = localStorage.getItem("userId")
+
+    useEffect(() => {
+        getHistory(token, userId)
+            .then((response) => {
+                setHistory(response.data)
+            })
+            .catch(error => {
+                console.log("Error fetching data: ", error);
+            })
+            .finally(() => setIsLoading(false))
+    }, [])
+    // console.log(history);
     return (
-        <div>
-            <div>
-                <h3 className='mb-3 text-center'><big><AiFillCar /></big> Recently Parked</h3>
+        <> {
+            isLoading ? <p>Loading......</p> : <div>
+                <div>
+                    <h3 className='mb-3 text-center'><big><AiFillCar /></big> Recently Parked</h3>
+                </div>
+                <Row>
+                    <Col xs={12} lg={2}></Col>
+                    {
+                        history.map((recent) => (
+                            <Col className='text-center'>
+                                <RecentParkingItem
+                                    key={recent.carpark.carparkId}
+                                    id={recent.carpark.carparkId}
+                                    name={recent.carpark.carparkName}
+                                />
+                            </Col>
+                        ))
+                    }
+                    <Col xs={12} lg={2}></Col>
+                </Row>
             </div>
-            <Row>
-                <Col xs={12} lg={2}></Col>
-                {
-                    dummyCarparks.map(recent => (
-                        <Col className='text-center'>
-                            <RecentParkingItem
-                                key={recent.carparkId}
-                                id={recent.carparkId}
-                                price={recent.dynamicPrice}
-                                location={recent.carparkName}
-                                avail={recent.availableLots}
-                            />
-                        </Col>
-                    ))
-                }
-                <Col xs={12} lg={2}></Col>
-            </Row>
-
-        </div>
+        }</>
     )
 }

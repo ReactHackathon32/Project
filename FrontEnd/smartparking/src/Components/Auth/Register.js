@@ -1,9 +1,11 @@
-import React, {useContext} from "react";
+import React, { useContext, useEffect } from "react";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { Container, Form, Button } from "react-bootstrap";
 import { UserContext } from "../../App";
 import { FaParking } from "react-icons/fa";
+import { postRegister } from "../../API/postRegister";
+import { Alert } from "react-bootstrap";
 
 export const Register = () => {
   const contextData = useContext(UserContext);
@@ -16,6 +18,9 @@ export const Register = () => {
     password: "",
     confirmPassword: "",
   });
+  const [isSuccess, setIsSuccess] = useState('')
+  const [registerStatus, setRegisterStatus] = useState('')
+  const [show, setShow] = useState(true);
 
   const updateFormField = (e) => {
     setFormState({
@@ -30,9 +35,8 @@ export const Register = () => {
   const [invalidPassword, setInvalidPassword] = useState(false);
   const [invalidConfirmPassword, setInvalidConfirmPassword] = useState(false);
 
-  const register = async () => {
+  const register = () => {
     let errors = [];
-
     if (
       !formState.firstName.match(/^[A-Za-z]+( [A-Za-z]+)*$/) ||
       formState.firstName.length < 3
@@ -81,21 +85,36 @@ export const Register = () => {
 
     // if no errors, link to dashboard
     if (errors.length === 0) {
-        localStorage.setItem("login", true);
-        contextData.loginAction(true);
-      navigate("/dashboard/main", {replace: true});
+      postRegister(formState.email, formState.password, formState.confirmPassword, formState.firstName, formState.lastName)
+        .then((response) => {
+          console.log(response.data.status);
+          console.log(response.data.message);
+          setRegisterStatus(response.data.status)
+          navigate("/login", { replace: true })
+        })
+        .catch(error => {
+          setIsSuccess('false')
+          console.log("Error fetching data: ", error);
+        })
     }
-
+    // navigate("/login", { replace: true });
     // console.log(formState.firstName, formState.lastName, formState.email, formState.password)
     console.log('errors', errors);
   };
 
+
+
+
   return (
     <React.Fragment>
+      {isSuccess === 'false' ? (
+        <Alert className='m-3' variant="danger" onClose={() => setShow(false)} dismissible>
+          <Alert.Heading>Account creation Unsuccessful!</Alert.Heading>
+        </Alert>
+      ) : null}
       <Container>
         <div className="mt-5 pt-5 px-3 mx-auto form-input">
-        <Link to="/"><div className="text-center mb-4" style={{ fontSize: '3.5rem', color: 'black'}} ><FaParking /></div></Link>
-
+          <Link to="/"><div className="text-center mb-4" style={{ fontSize: '3.5rem', color: 'black' }} ><FaParking /></div></Link>
           <h2 className="text-center">REGISTER</h2>
           <p className="text-center">Create your account. It's free and only takes a minute.</p>
           <Form>

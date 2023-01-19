@@ -32,7 +32,7 @@ export const SearchLocations = () => {
         carparks.filter((carpark) =>
           carpark.carparkName
             .toLowerCase()
-            .includes(searchInput.toLowerCase())
+            .startsWith(searchInput.toLowerCase())
         )
       )
       : setSearchResult([]);

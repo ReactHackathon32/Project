@@ -51,8 +51,9 @@ export const Login = ({ setUserDetails }) => {
     } else if (loginStatus === 'invalid username/password') {
       console.log("invalid username/password");
       setInvalidInput(true);
-    } else {
-      console.log("initial render");
+    } if (loginStatus === 'email not verified') {
+      console.log("email not verified");
+      setInvalidInput(true);
     }
   }
 
@@ -88,12 +89,19 @@ export const Login = ({ setUserDetails }) => {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
-            {invalidInput === true ? (
+            {loginStatus === 'invalid username/password' ? (
               <div
                 className="text-start"
                 style={{ color: "red", fontSize: "0.9rem" }}
               >
                 Invalid email / password. Please try again.
+              </div>
+            ) : loginStatus === 'email not verified' ? (
+              <div
+                className="text-start"
+                style={{ color: "red", fontSize: "0.9rem" }}
+              >
+                Email not verified.
               </div>
             ) : null}
 

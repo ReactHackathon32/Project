@@ -37,7 +37,6 @@ export const NewParkingItem = ({ id, name, dynamicPrice, avail }) => {
         <h3>Carpark Name: {name}</h3>
         <h5 className="text-muted">Current Price: $ {dynamicPrice} / 30mins</h5>
         <h5>Available Lots: {avail}</h5>
-        <p>(This is recent peaks graph placeholder)</p>
         <Button variant="dark">Park Here</Button>
       </div>
     </>
