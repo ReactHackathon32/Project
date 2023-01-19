@@ -24,7 +24,11 @@ export const ParkingHistoryDisplay = () => {
 
   return (
     <>
-      {isLoading ? <>Page is loading</> :
+      {isLoading ? <div className="text-center" style={{marginLeft: 'auto', marginRight: 'auto', paddingTop: '300px'}}>
+        <h2>
+          Retrieving information for My History...
+        </h2>
+        </div>  :
         <Container className="my-5">
           <h2 className="my-4 text-center"><big><MdHistory /></big> My Parking History</h2>
           <Row className='g-4'>

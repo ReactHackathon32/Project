@@ -39,7 +39,11 @@ export const SearchLocations = () => {
   }
   return (
     <>
-      {isLoading ? <div>Page is Loading</div> :
+      {isLoading ? <div className="text-center" style={{marginLeft: 'auto', marginRight: 'auto', paddingTop: '300px'}}>
+        <h2>
+          Retrieving information for Search Parking...
+        </h2>
+        </div>  :
         <Container>
           <h2 className="text-center mt-5 mb-4"><big><RxMagnifyingGlass /></big> Search Parking Locations</h2>
           <Row className="justify-content-md-center">
