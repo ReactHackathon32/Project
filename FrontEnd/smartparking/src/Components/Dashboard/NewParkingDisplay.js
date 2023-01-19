@@ -1,4 +1,5 @@
 import React from "react";
+import { Container } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 import dummyCarparks from "../../Datas/Carpark";
 import { NewParkingItem } from "./NewParkingItem";
@@ -7,16 +8,13 @@ export const NewParkingDisplay = () => {
   // Extracting the selected carparkID from prev path/route
   const location = useLocation()
   const curCarparkId = location.state.carpark
-  console.log("useLocation", location);
-  console.log("curCarParkId", curCarparkId);
 
   // extract the carpark data object from dataSource
 
   const curCarpark = dummyCarparks.filter(carpark => carpark.carparkId == curCarparkId)
-  console.log("curCarpark", curCarpark);
 
   return (
-    <div>
+    <Container>
       {curCarpark.map(carpark => (
         <NewParkingItem
           key={carpark.carparkId}
@@ -26,6 +24,6 @@ export const NewParkingDisplay = () => {
           avail={carpark.availableLots}
         />
       ))}
-    </div>
+    </Container>
   )
 }
