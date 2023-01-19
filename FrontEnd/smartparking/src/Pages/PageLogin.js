@@ -1,10 +1,10 @@
 import React from 'react'
 import { Login } from '../Components/Auth/Login'
 
-const PageLogin = () => {
+const PageLogin = ({ setUserDetails }) => {
   return (
     <div>
-      <Login />
+      <Login setUserDetails={setUserDetails} />
     </div>
   )
 }

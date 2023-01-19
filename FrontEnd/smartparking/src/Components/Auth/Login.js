@@ -1,36 +1,60 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Container, Form, Button, Alert } from "react-bootstrap";
 import { useNavigate, Link, useLocation } from "react-router-dom";
-import { dummyUser } from "../../Datas/User";
 import { UserContext } from "../../App";
 import { FaParking } from "react-icons/fa";
+import { postLogin } from "../../API/postLogin";
 
-export const Login = () => {
+export const Login = ({ setUserDetails }) => {
   const contextData = useContext(UserContext);
   const navigate = useNavigate();
   const location = useLocation();
   const fromReset = location.state;
   const [show, setShow] = useState(true);
 
-  console.log("show", show);
-  console.log("location", location.state);
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [invalidInput, setInvalidInput] = useState(false);
+  const [loginResult, setLoginResult] = useState({})
+  const [loginStatus, setLoginStatus] = useState()
+  const [curToken, setCurToken] = useState()
+  const [curUserId, setCurUserId] = useState()
+  const [isLoading, setIsLoading] = useState(true)
 
-  const verifyLogin = () => {
-    dummyUser.map((user) => {
-      if (user.email === email && user.password === password) {
-        localStorage.setItem("login", true);
-        contextData.loginAction(true);
-        navigate("/dashboard/main", { replace: true });
-      } else {
-        console.log("false");
-        setInvalidInput(true);
-      }
-    });
+  const loginHandler = () => {
+    postLogin(email, password)
+      .then((response) => {
+        setLoginResult(response.data)
+        setLoginStatus(response.data.status)
+        setCurToken(response.data.sessionToken)
+        setCurUserId(response.data.userId)
+      })
+      .catch(error => {
+        console.log("Error fetching data: ", error);
+      })
+      .finally(() => {
+        setIsLoading(false)
+      })
   };
+
+  useEffect(() => {
+    verifyLogin()
+  }, [loginResult])
+
+  const verifyLogin = async () => {
+    if (loginStatus === 'success') {
+      localStorage.setItem("login", true);
+      localStorage.setItem("token", curToken)
+      localStorage.setItem("userId", curUserId)
+      contextData.loginAction(true);
+      navigate("/dashboard/main");
+    } else if (loginStatus === 'invalid username/password') {
+      console.log("invalid username/password");
+      setInvalidInput(true);
+    } else {
+      console.log("initial render");
+    }
+  }
 
   return (
     <React.Fragment>
@@ -41,7 +65,7 @@ export const Login = () => {
           </Alert>
         )}
         <div className="mt-5 pt-5 px-3 mx-auto form-input">
-        <Link to="/"><div className="text-center mb-4" style={{ fontSize: '3.5rem', color: 'black'}} ><FaParking /></div></Link>
+          <Link to="/"><div className="text-center mb-4" style={{ fontSize: '3.5rem', color: 'black' }} ><FaParking /></div></Link>
 
           <h2 className="text-center">MEMBER LOGIN</h2>
           <p className="text-center">
@@ -78,7 +102,7 @@ export const Login = () => {
             </p>
 
             <div className="d-grid mt-3">
-              <Button onClick={verifyLogin} variant="dark">
+              <Button onClick={loginHandler} variant="dark">
                 LOGIN
               </Button>
             </div>

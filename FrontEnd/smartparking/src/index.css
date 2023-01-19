@@ -5,8 +5,13 @@ p {
   font-family: "Roboto", sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Merriweather Sans', sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Merriweather Sans', sans-serif;
 }
 
 /* REGISTER, LOGIN, RESET PASSWORD PAGES */
@@ -74,4 +79,8 @@ body {
 .circle:hover {
   transform: scale(1.2);
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12), 0 4px 8px rgba(0, 0, 0, 0.06);
+}
+
+.test {
+  background-color: black;
 }

@@ -4,7 +4,7 @@ import { Card } from "react-bootstrap";
 const ViewLocationItem = (props) => {
   return (
 
-      <Card style={{  }}>
+    <Card style={{}}>
       <Card.Body>
         <Card.Title>{props.name}</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">$ {props.dynamicPrice} / hr <br /></Card.Subtitle>

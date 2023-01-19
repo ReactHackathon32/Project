@@ -9,7 +9,7 @@
 /* styling for search results container */
 .searchResults {
   /* width: 200px; */
-  height: 100px;
+  height: auto;
   background-color: white;
   border-radius: 15px;
 }
