@@ -9,83 +9,80 @@ import CurrentParkingOverlay from "./CurrentParkingOverlay";
 import Timer from "./Timer";
 
 export const NewParkingItem = ({ id, name, dynamicPrice, avail }) => {
-  const token = localStorage.getItem("token")
-  const userId = localStorage.getItem("userId")
-  const [startResp, setStartResp] = useState()
-  const [stopResp, setStopResp] = useState()
-  const [isParking, setIsParking] = useState()
-  const [loadingCur, setLoadingCur] = useState(false)
-  const [curParking, setCurParking] = useState()
-  const [totalCost, setTotalCost] = useState()
-  const [isLoading, setIsLoading] = useState(false)
-  const [timer, setTimer] = useState(false)
+  const token = localStorage.getItem("token");
+  const userId = localStorage.getItem("userId");
+  const [startResp, setStartResp] = useState();
+  const [stopResp, setStopResp] = useState();
+  const [isParking, setIsParking] = useState();
+  const [loadingCur, setLoadingCur] = useState(false);
+  const [curParking, setCurParking] = useState();
+  const [totalCost, setTotalCost] = useState();
+  const [isLoading, setIsLoading] = useState(false);
+  const [timer, setTimer] = useState(false);
 
-  const contextData = useContext(UserContext)
-
+  const contextData = useContext(UserContext);
 
   useEffect(() => {
-    if (localStorage.getItem("isParking") === 'false') setIsParking(false)
-    if (localStorage.getItem("isParking") === 'true') setIsParking(true)
+    if (localStorage.getItem("isParking") === "false") setIsParking(false);
+    if (localStorage.getItem("isParking") === "true") setIsParking(true);
     const intervalId = setInterval(() => {
       getCurrentParking(userId, token)
-        .then(response => {
+        .then((response) => {
           console.log("getCurParking:", response.data);
-          setCurParking(response.data)
-          setTotalCost(response.data.price)
+          setCurParking(response.data);
+          setTotalCost(response.data.price);
         })
-        .catch(error => {
-          console.log("Error fetching current parking data:", error)
+        .catch((error) => {
+          console.log("Error fetching current parking data:", error);
         })
         .finally(() => {
-          setLoadingCur(false)
-        })
-    }, 120000)
+          setLoadingCur(false);
+        });
+    }, 120000);
 
-    return () => clearInterval(intervalId)
-
-  }, [isParking])
+    return () => clearInterval(intervalId);
+  }, [isParking]);
 
   function startHandler() {
-
-    setIsLoading(true)
+    setIsLoading(true);
     startParking(id, userId, token)
-      .then(response => {
-        setTimer(true)
+      .then((response) => {
+        setTimer(true);
         console.log("startParking:", response.data);
-        setStartResp(response.data)
-        setIsParking(true)
-        contextData.setParking(true)
-        localStorage.setItem('isParking', true)
-        localStorage.setItem('curCarparkObj', curParking)
-        contextData.setCurCarparkObj(curParking)
+        setStartResp(response.data);
+        setIsParking(true);
+        contextData.setParking(true);
+        localStorage.setItem("isParking", true);
+        localStorage.setItem("curCarparkObj", curParking);
+        contextData.setCurCarparkObj(curParking);
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("Error fetching start data:", error);
       })
       .finally(() => {
-        setIsLoading(false)
-      })
+        setIsLoading(false);
+      });
   }
 
   function stopHandler() {
-    setIsLoading(true)
+    setIsLoading(true);
     stopParking(userId, token)
-      .then(response => {
-        setTimer(false)
+      .then((response) => {
+        setTimer(false);
         console.log("stopParking:", response.data);
-        setStartResp(response.data)
-        setIsParking(false)
-        contextData.setParking(false)
-        localStorage.setItem('isParking', false)
-        localStorage.setItem('curCarparkObj')
-        contextData.setCurCarparkObj()
+        setStartResp(response.data);
+        setIsParking(false);
+        contextData.setParking(false);
+        localStorage.setItem("isParking", false);
+        localStorage.setItem("curCarparkObj");
+        contextData.setCurCarparkObj();
       })
-      .catch(error => {
+      .catch((error) => {
         console.log("Error fetching stop data:", error);
       })
       .finally(() => {
-        setIsLoading(false)
-      })
+        setIsLoading(false);
+      });
     console.log("stopResponse:", stopResp);
   }
   return (
@@ -104,7 +101,7 @@ export const NewParkingItem = ({ id, name, dynamicPrice, avail }) => {
             <div className="pe-4">
               Total cost
               <br />
-              {isParking ? (totalCost) : <>-</>}
+              {isParking ? totalCost : <>-</>}
             </div>
             <div
               style={{
@@ -121,7 +118,6 @@ export const NewParkingItem = ({ id, name, dynamicPrice, avail }) => {
             </div>
           </div>
         )}
-
       </div>
       <div className="text-center my-5">
         <h3>Carpark Name: {name}</h3>
@@ -129,15 +125,25 @@ export const NewParkingItem = ({ id, name, dynamicPrice, avail }) => {
         {isParking ? (
           <></>
         ) : (
-          <h5 className="text-muted">Current Price: $ {dynamicPrice} / 30mins</h5>
+          <h5 className="text-muted">Current Price: $ {dynamicPrice} /hr </h5>
         )}
-        {isParking ?
-          isLoading ? (<LoadingSpinner />) : (<Button variant="dark" onClick={stopHandler}>Stop Parking</Button>)
-          : isLoading ? (<LoadingSpinner />) : (<Button variant="dark" onClick={startHandler}>Park Here</Button>)
-        }
+        {isParking ? (
+          isLoading ? (
+            <LoadingSpinner />
+          ) : (
+            <Button variant="dark" onClick={stopHandler}>
+              Stop Parking
+            </Button>
+          )
+        ) : isLoading ? (
+          <LoadingSpinner />
+        ) : (
+          <Button variant="dark" onClick={startHandler}>
+            Park Here
+          </Button>
+        )}
       </div>
-      <div>
-      </div>
+      <div></div>
     </>
   );
 };

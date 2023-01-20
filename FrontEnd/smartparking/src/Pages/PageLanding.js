@@ -17,7 +17,7 @@ export const PageLanding = () => {
           DynaPark <FaParking className="mb-2" />
         </h1>
         <big>
-          <p>Providing you with the cheapest carpark nearby</p>
+          <p>Providing you with the cheapest parking nearby</p>
         </big>
         <Link className="me-2" to="/login">
           <Button variant="dark">
