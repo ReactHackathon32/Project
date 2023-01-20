@@ -20,13 +20,21 @@ function App() {
   const [userLogin, setUserLogin] = useState(getUserLogin);
   const getParkingStatus = localStorage.getItem("isParking") === "true";
   const [parkingStatus, setParkingStatus] = useState(getParkingStatus);
-  const [curCarparkObj, setCurCarparkObj] = useState({})
+  const [curCarparkObj, setCurCarparkObj] = useState();
 
   // console.log("userDetails in App.js:", userDetails);
 
   return (
     <div className="App">
-      <UserContext.Provider value={{ loginAction: setUserLogin, setParking: setParkingStatus, isParked: parkingStatus, setCurCarparkObj: setCurCarparkObj, curCarparkObj: curCarparkObj }}>
+      <UserContext.Provider
+        value={{
+          loginAction: setUserLogin,
+          setParking: setParkingStatus,
+          isParked: parkingStatus,
+          setCurCarparkObj: setCurCarparkObj,
+          curCarparkObj: curCarparkObj,
+        }}
+      >
         <Routes>
           <Route path="/" element={<PageLanding />} />
           <Route path="/login" element={<PageLogin />} />

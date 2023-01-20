@@ -31,6 +31,7 @@ export const NewParkingItem = ({ id, name, dynamicPrice, avail }) => {
           console.log("getCurParking:", response.data);
           setCurParking(response.data);
           setTotalCost(response.data.price);
+          contextData.setCurCarparkObj(response.data);
         })
         .catch((error) => {
           console.log("Error fetching current parking data:", error);
@@ -54,7 +55,6 @@ export const NewParkingItem = ({ id, name, dynamicPrice, avail }) => {
         contextData.setParking(true);
         localStorage.setItem("isParking", true);
         localStorage.setItem("curCarparkObj", curParking);
-        contextData.setCurCarparkObj(curParking);
       })
       .catch((error) => {
         console.log("Error fetching start data:", error);
@@ -101,7 +101,7 @@ export const NewParkingItem = ({ id, name, dynamicPrice, avail }) => {
             <div className="pe-4">
               Total cost
               <br />
-              {isParking ? totalCost : <>-</>}
+              {isParking ? totalCost > 0 ? totalCost : 0 : <>-</>}
             </div>
             <div
               style={{
